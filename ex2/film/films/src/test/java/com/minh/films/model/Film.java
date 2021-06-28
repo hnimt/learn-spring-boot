@@ -1,4 +1,4 @@
-package vn.techmaster.films.films.model;
+package com.minh.films.model;
 
 import java.util.Collections;
 
