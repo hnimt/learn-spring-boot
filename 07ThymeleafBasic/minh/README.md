@@ -3,4 +3,4 @@
 ## Cài đặt
 
 -   Clone import project
--   File chạy MinhApplication.java
+-   File chạy src/main/java/vn/techmaster/basicthymeleaf/minh/MinhApplication.java
