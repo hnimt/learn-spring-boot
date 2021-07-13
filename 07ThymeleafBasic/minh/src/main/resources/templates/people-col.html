@@ -16,15 +16,31 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"
         ></script>
+
+        <style>
+            img {
+                width: 50%;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-6 mb-20" th:each="person, iStat:${people}">
-                    <p th:text="${person.name}"></p>
-                    <p th:text="${person.nationality}"></p>
-                    <p th:text="${person.birthdate}"></p>
-                    <p th:text="${person.gender}"></p>
+                    <div class="row">
+                        <div class="col-6 d-flex justify-content-end">
+                            <img
+                                src="https://thumbs.dreamstime.com/z/abstract-sign-avatar-men-icon-male-profile-white-symbol-gray-circle-background-vector-illustration-avatar-144168119.jpg"
+                                alt=""
+                            />
+                        </div>
+                        <div class="col-6">
+                            <p th:text="${person.name}"></p>
+                            <p th:text="${person.nationality}"></p>
+                            <p th:text="${person.birthdate}"></p>
+                            <p th:text="${person.gender}"></p>
+                        </div>
+                    </div>
                     <br />
                 </div>
             </div>
