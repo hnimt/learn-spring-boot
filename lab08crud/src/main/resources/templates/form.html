@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form
+            action="#"
+            th:action="@{/person/save}"
+            th:object="${person}"
+            method="post"
+            novalidate="novalidate"
+        >
+            <input
+                type="hidden"
+                placeholder="id"
+                th:field="*{id}"
+            /><br /><br />
+            <input
+                type="text"
+                placeholder="name"
+                th:field="*{name}"
+            /><br /><br />
+            <input
+                type="text"
+                placeholder="job"
+                th:field="*{job}"
+            /><br /><br />
+            <input
+                type="text"
+                placeholder="gender"
+                th:field="*{gender}"
+            /><br /><br />
+            <input
+                type="text"
+                placeholder="birthDay"
+                th:field="*{birthDay}"
+            /><br /><br />
+            <button type="submit">Save</button>
+        </form>
+    </body>
+</html>

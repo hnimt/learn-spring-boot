@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1 th:text="${person.name}"></h1>
+        <br />
+        <p th:text="${person.job}"></p>
+        <br />
+        <a th:href="@{/person/edit/{id}(id=${person.id})}">Edit Person</a
+        >&nbsp;&nbsp;
+        <a th:href="@{/person/delete/{id}(id=${person.id})}">Delete Person</a
+        ><br />
+    </body>
+</html>
