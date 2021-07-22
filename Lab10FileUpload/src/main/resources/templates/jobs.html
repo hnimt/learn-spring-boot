@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <head th:replace="template.html :: header('about')"> </head>
+        <title>Title</title>
+    </head>
+    <body>
+        <header th:insert="template.html :: topmenu"></header>
+
+        <!-- Your code -->
+        <div class="container">
+            <form
+                th:action="@{/person/jobs}"
+                method="post"
+                class="mb-5"
+                name="job"
+                th:object="${newJob}"
+            >
+                <div class="form-group row">
+                    <label for="job" class="col-sm-2 col-form-label">Job</label>
+
+                    <div class="col-sm-4 d-flex">
+                        <input
+                            type="text"
+                            class="form-control me-2"
+                            id="job"
+                            autocomplete="off"
+                            th:field="*{jobName}"
+                        />
+                        <button class="btn btn-success" type="submit">Save</button>
+                    </div>
+                </div>
+            </form>
+
+            <ul th:each="job,iter:${jobs}">
+                <li th:text="${job.jobName}"></li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template.html :: header('about')"> </head>
+    <head>
+        <style>
+            img {
+                height: 30px;
+            }
+            a {
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <header th:insert="template.html :: topmenu"></header>
+
+        <!-- Your code -->
+        <div class="container">
+            <div class="d-flex">
+                <a href="/person/add" class="ms-auto">Add Person</a>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <th>Name</th>
+                    <th>Job</th>
+                    <th>Gender</th>
+                    <th>Birthdate</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <tr th:each="person,iter:${people}">
+                        <td th:text="${person.name}"></td>
+                        <td th:text="${person.job}"></td>
+                        <td th:text="${person.gender}"></td>
+                        <td th:text="${person.birthDate}"></td>
+                        <td>
+                            <span>
+                                <a
+                                    th:href="@{/person/edit/{id}(id=${person.id})}"
+                                    >Edit</a
+                                > </span
+                            >&nbsp; &nbsp;
+                            <span>
+                                <a  th:style="'color: red'"
+                                    th:href="@{/person/delete/{id}(id=${person.id})}"
+                                    >Delete</a
+                                >
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
