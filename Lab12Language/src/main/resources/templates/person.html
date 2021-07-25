@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template.html :: header('about')"> </head>
+    <head>
+        <style>
+            img {
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <header th:insert="template.html :: topmenu"></header>
+
+        <!-- Your code -->
+        <div class="container">
+            <h1 class="text-center">Personal Information Form</h1>
+            <img th:src="@{${photoPath}}" />
+            <form
+                th:action="@{/person/save}"
+                method="post"
+                name="person"
+                enctype="multipart/form-data"
+                th:object="${person}"
+            >
+                <input
+                    type="hidden"
+                    placeholder="id"
+                    th:field="*{id}"
+                /><br /><br />
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label"
+                        >Name</label
+                    >
+                    <div class="col-sm-4">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            autocomplete="off"
+                            th:field="*{name}"
+                        />
+                    </div>
+                    <div
+                        class="text-danger"
+                        th:if="${#fields.hasErrors('name')}"
+                        th:errors="*{name}"
+                    >
+                        Name Error
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="job">Job </label>
+                    <select name="job" id="job" th:field="*{job}"  >
+                        <option th:each="myJob,iter:${jobs}" th:value="${myJob.jobName}" th:text="${myJob.jobName}" ></option>
+                    </select>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gender"
+                        id="male"
+                        th:value="male"
+                        th:field="*{gender}"
+                    />
+                    <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gender"
+                        id="female"
+                        th:value="female"
+                        th:field="*{gender}"
+                    />
+                    <label class="form-check-label" for="female">Female</label>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="birthDate">birthDate:</label>
+                    <input
+                        type="date"
+                        id="birthDate"
+                        name="birthDate"
+                        th:field="*{birthDate}"
+                    />
+                </div>
+                <div class="form-group row mt-3">
+                    <label class="col-sm-2 col-form-label"
+                        >Select a photo</label
+                    >
+                    <div class="col-sm-4">
+                        <input
+                            type="file"
+                            class="form-control"
+                            th:field="*{photo}"
+                        />
+                    </div>
+                    <div
+                        class="text-danger"
+                        th:if="${#fields.hasErrors('photo')}"
+                        th:errors="*{photo}"
+                    >
+                        Upload Error
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
