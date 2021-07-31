@@ -32,4 +32,8 @@ public class PaymentService {
 
         emailSender.send(message);
     }
+
+    public void testGit() {
+
+    }
 }
