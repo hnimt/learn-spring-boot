@@ -10,7 +10,7 @@
 ![alt text](screenshots/checkout.png)
 
 ### Màn hình payment:
-![alt text](screenshots/checkout.png)
+![alt text](screenshots/payment.png)
 
 ### Màn hình email nhận được:
 ![alt text](screenshots/sendmail.png)
