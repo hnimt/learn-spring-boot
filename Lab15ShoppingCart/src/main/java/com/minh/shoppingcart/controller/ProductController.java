@@ -3,21 +3,18 @@ package com.minh.shoppingcart.controller;
 import com.minh.shoppingcart.model.Customer;
 import com.minh.shoppingcart.repository.ProductRepository;
 import com.minh.shoppingcart.service.CartService;
-import com.minh.shoppingcart.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class ProductController {
     @Autowired private ProductRepository productRepository;
     @Autowired private CartService cartService;
-    @Autowired private PaymentService paymentService;
 
     @GetMapping("/")
     public String showHomePage(HttpSession session, Model model) {
@@ -64,11 +61,7 @@ public class ProductController {
                               @ModelAttribute("customer") Customer customer,
                               BindingResult result) {
         if(!result.hasErrors()) {
-            try {
-                paymentService.sendEmail(customer.getEmail(), session, customer);
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
+            
             return "redirect:/payment/success";
         }
         return "payment";

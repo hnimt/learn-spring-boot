@@ -1,8 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
     <body>
         <p style="color: red; font-weight: bold" th:text="'Dear ' + ${name} + ','"></p>
-        <p th:text="'This is ' + ${project_name} + ' project.'"></p>
+        <div class="container">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Sub Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="orderLine, iStat:${cart.orderLines}">
+                    <th scope="row" th:text="${iStat.index} +1"></th>
+                    <td th:text="${orderLine.product.name}">
+                        Sony WXMH 1000
+                    </td>
+                    <td th:text="${orderLine.product.manufacturer}">
+                        Sony
+                    </td>
+                    <td
+                            th:text="${#numbers.formatInteger(orderLine.product.price, 3, 'POINT')}"
+                    >
+                        4000000
+                    </td>
+                    <td class="d-flex flex-row align-items-center">
+                        <p th:text="${orderLine.count}" class="ms-3 me-3">
+                            1
+                        </p>
+                    </td>
+                    <td
+                            th:text="${#numbers.formatInteger(orderLine.product.price * orderLine.count, 3, 'POINT')}"
+                    >
+                        4000000
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="2">Raw Total</td>
+                    <td
+                            th:text="${#numbers.formatInteger(cart.rawTotal, 3, 'POINT')}"
+                    >
+                        4000000
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="2">Discount</td>
+                    <td
+                            th:text="${#numbers.formatInteger(-cart.discount, 3, 'POINT')}"
+                    >
+                        4000000
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="2">VAT</td>
+                    <td
+                            th:text="${#numbers.formatInteger(cart.vatTax, 3, 'POINT')}"
+                    >
+                        4000000
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td colspan="2">Final Total</td>
+                    <td
+                            th:text="${#numbers.formatInteger(cart.total, 3, 'POINT')} + '$'"
+                    >
+                        4000000
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         <p>Thanks!</p>
     </body>
 </html>
